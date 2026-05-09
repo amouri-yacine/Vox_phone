@@ -61,6 +61,7 @@ export function setEspUrl(url: string): string {
   return normalized;
 }
 
+<<<<<<< HEAD
 export async function sendCommand(device: "ac" | "tv", command: string) {
   const base = getEspUrl();
   const url = `${base.replace(/\/+$/, "")}/command`;
@@ -68,11 +69,20 @@ export async function sendCommand(device: "ac" | "tv", command: string) {
   //   ac_on, ac_22, ac_fan_high, tv_p, tv_v+, tv_1, ...
   const prefix = `${device}_`;
   const cmd = command.startsWith(prefix) ? command : `${prefix}${command}`;
+=======
+export async function sendCommand(_device: "ac" | "tv", command: string) {
+  const base = getEspUrl();
+  const url = `${base.replace(/\/+$/, "")}/command`;
+>>>>>>> f77842d45a21527e38fa06b20641b303ed8e2b8e
   try {
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+<<<<<<< HEAD
       body: JSON.stringify({ cmd }),
+=======
+      body: JSON.stringify({ cmd: command }),
+>>>>>>> f77842d45a21527e38fa06b20641b303ed8e2b8e
       // ESP8266 is on LAN; keep timeout short via AbortController
       signal: AbortSignal.timeout(4000),
     });
